@@ -39,29 +39,3 @@ input.dayRate {
   font-size: 1em;
   padding: 3px;
 }
-
-.earningsContainer div {
-  height: 30px;
-  text-align: center;
-  padding-top: 10px;
-  position: relative;
-  margin-top: 5px;
-}
-
-.earningsContainer div::before {
-  border-right: 1px dashed #555;
-  height: 29px;
-  top: 36px;
-  display: block;
-  content: " ";
-  position: absolute;
-  right: -1px;
-  z-index: 9999;
-}
-
-.gross {
-  background-color: #ff9800;
-}
-.expensesNI {
-  background-color: #a6a6c3;
-}

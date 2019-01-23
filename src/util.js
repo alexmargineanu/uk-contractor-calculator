@@ -24,7 +24,6 @@ export function position(value) {
   };
 
   export function percentOf(isPercent, of) {
-    console.log(Math.floor(isPercent * (of / 100)), isPercent, of);
     return Math.floor(isPercent * (of / 100));
   }
 

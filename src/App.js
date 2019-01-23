@@ -6,19 +6,32 @@ import IncomeTax from './IncomeTax';
 import './index.css';
 
 class App extends Component {
-  state = { dayRate: 350, noWeeks: 4 };
+
+  state = {
+    dayRate: 350,
+    noWeeks: 12,
+    incomeTax: 0,
+    nationalInsurance: 0,
+  };
 
   updateDayRate = (event) => {
     this.setState({ dayRate: event.target.value });
   }
-  updateNoWeeks = (event) => {
+  updateNumberOfWeeks = (event) => {
     this.setState({ noWeeks: event.target.value });
+  }
+
+  handleNationalInsuranceChange = (value) => {
+    this.setState({ nationalInsurance: value });
+  }
+  handleIncomeTaxChange = (value) => {
+    this.setState({ incomeTax: value });
   }
 
   render() {
     return (
       <div>
-        <h1>Your day rate: £
+        <h1>Day rate £
           <input
             className="dayRate"
             type="number"
@@ -27,19 +40,26 @@ class App extends Component {
             onChange={this.updateDayRate}
             value={this.state.dayRate}
           />
-      Number of weeks:
+      for
           <input
             className="dayRate"
             type="number"
             min="1"
-            onChange={this.updateNoWeeks}
+            onChange={this.updateNumberOfWeeks}
             value={this.state.noWeeks}
-          />
+          /> weeks
         </h1>
-        <h1>Gross pay: {util.financial(this.state.dayRate * 5)}/week</h1>
 
-        <NationalInsurance dayRate={this.state.dayRate} />
-        <IncomeTax dayRate={this.state.dayRate} noWeeks={this.state.noWeeks} />
+        <NationalInsurance
+          weeklyRate={this.state.dayRate * 5}
+          onChange={this.handleNationalInsuranceChange}
+        />
+        <IncomeTax
+          yearlyRate={this.state.dayRate * this.state.noWeeks * 5}
+          onChange={this.handleIncomeTaxChange}
+        />
+        <h1>Gross pay: {util.financial(this.state.dayRate * 5)}/week</h1>
+        <h1>Net pay: {util.financial((this.state.dayRate * 5) - this.state.nationalInsurance - (this.state.incomeTax/52))}/week</h1>
 
     </div>
     );

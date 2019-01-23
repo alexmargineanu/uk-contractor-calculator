@@ -1,89 +1,75 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _map from 'lodash/map';
-import _sum from 'lodash/sumBy';
+import _sumBy from 'lodash/sumBy';
 
 import Tresholds from './Tresholds';
+import IncomeTaxGrid from './Grid';
 
 import * as util from '../util.js';
 import '../index.css';
 
-import { Progress, Grid, Segment, Header } from 'semantic-ui-react'
-
-const IncomeTaxGrid = ( { dayRate, niAmmounts, summedTresholds }) =>
-<>
-  <IncomeTaxTresholds
-    summedTresholds={summedTresholds}
-    weeklyRate={dayRate * 5}
-    niAmmounts={niAmmounts} />
-</>
-
-const NetPay = ({ summedTresholds, dayRate }) =>
-<>
-  <Segment>
-    <Progress color='violet' percent={Math.floor((summedTresholds) * (100 / (dayRate * 5)))} progress>
-      {Math.floor((summedTresholds) * (100 / (dayRate * 5)))}% of your gross pay goes to National Insurance
-    </Progress>
-  </Segment>
-  <Header as='h2'>Net pay: {util.financial((dayRate * 5) - (summedTresholds))}/week ()</Header>
-</>
-
-const IncomeTaxTresholds = ( { weeklyRate, niAmmounts, summedTresholds, type }) =>
-<Segment>
-  <Header as='h3'>NI {type}: {util.financial(summedTresholds[type])}/week</Header>
-
-  {weeklyRate > Tresholds.BR.value && weeklyRate < Tresholds.HR.value && (
-    <Progress percent={Tresholds.BR[type]} color='violet' progress active>
-      {util.financial(niAmmounts[0][type])} {Tresholds.BR.name} from £{Tresholds.BR.value} to £{weeklyRate}
-    </Progress>
-  )}
-
-  {weeklyRate > Tresholds.HR.value && (
-    <>
-    <Progress percent={Tresholds.BR[type]} color='violet' progress active>
-      {util.financial(niAmmounts[1][type])} {Tresholds.BR.name} from £{Tresholds.BR.value} to £{Tresholds.HR.value}
-    </Progress>
-    <Progress percent={Tresholds.HR[type]} color='purple' progress active>
-      {util.financial(niAmmounts[0][type])} {Tresholds.HR.name} from £{Tresholds.HR.value} to {util.financial(weeklyRate)}
-    </Progress>
-    </>
-  )}
-</Segment>
+import { Header } from 'semantic-ui-react'
 
 class IncomeTax extends Component {
   static propTypes = {
-    dayRate: PropTypes.number.isRequired,
+    yearlyRate: PropTypes.number.isRequired,
+    onChange: PropTypes.func.isRequired,
   };
 
-  render() {
-    const { dayRate, noWeeks } = this.props;
+  componentDidMount() {
+    this.props.onChange(_sumBy(this.calculateIncomeTax(), 'tax'));
+  }
 
-    const yearlyRate = dayRate * 5 * noWeeks;
+  componentDidUpdate(prevProps) {
+  if (this.props.yearlyRate !== prevProps.yearlyRate) {
+    this.props.onChange(_sumBy(this.calculateIncomeTax(), 'tax'));
+  }
+}
+
+  calculateIncomeTax() {
+    const { yearlyRate } = this.props;
+
+    const checkPersonalAllowance = yearlyRate > Tresholds.PA.exception ? Tresholds.PA.value : Tresholds.BR.value;
+
     const tresholdAmmounts = [];
 
-    if (yearlyRate > Tresholds.HR.value) {
-      tresholdAmmounts.push({ code: 'HR', 'ammount': yearlyRate - Tresholds.HR.value });
-      tresholdAmmounts.push({ code: 'BR', 'ammount': Tresholds.HR.value - Tresholds.BR.value });
+    if (yearlyRate > Tresholds.AR.value) {
+      tresholdAmmounts.push({ code: 'BR', 'ammount': Tresholds.HR.value - checkPersonalAllowance });
+      tresholdAmmounts.push({ code: 'HR', 'ammount': Tresholds.AR.value - Tresholds.HR.value });
+      tresholdAmmounts.push({ code: 'AR', 'ammount': yearlyRate - Tresholds.AR.value });
     } else {
       if (yearlyRate > Tresholds.BR.value) {
-        tresholdAmmounts.push({ code: 'BR', 'ammount': yearlyRate - Tresholds.BR.value });
+        tresholdAmmounts.push({ code: 'BR', 'ammount': yearlyRate > Tresholds.HR.value ? Tresholds.HR.value - Tresholds.BR.value : yearlyRate - Tresholds.BR.value});
+      }
+      if (yearlyRate > Tresholds.HR.value) {
+        tresholdAmmounts.push({ code: 'HR', 'ammount': yearlyRate - Tresholds.HR.value });
       }
     }
 
-    const niAmmounts = _map(tresholdAmmounts, (treshold) => {
-      return util.percentOf(treshold.ammount, Tresholds[treshold.code]);
+    const ammounts = _map(tresholdAmmounts, (treshold) => {
+      return {
+        tax: util.percentOf(treshold.ammount, Tresholds[treshold.code].rate),
+        ...treshold
+      };
     });
 
-    const summedTresholds = _sum(niAmmounts);
+    return ammounts;
+  }
+
+  render() {
+    const { yearlyRate } = this.props;
+
+    const ammounts = this.calculateIncomeTax();
+    const summedTresholds = _sumBy(ammounts, 'tax');
 
     return (
       <>
-        <Header as='h2'>Yearly gross: {util.financial(yearlyRate)}</Header>
-        <Header as='h2'>Income Tax: {util.financial(summedTresholds)}/week</Header>
+        <Header as='h2'>Income Tax: {util.financial(summedTresholds)}/year</Header>
         <IncomeTaxGrid
           yearlyRate={yearlyRate}
           summedTresholds={summedTresholds}
-          niAmmounts={niAmmounts}
+          ammounts={ammounts}
         />
       </>
     );

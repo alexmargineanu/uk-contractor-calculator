@@ -17,18 +17,6 @@ const Tresholds = {
     employee: 12,
     employer: 13.8,
   },
-  /*ST: {
-    name:  'Secondary Threshold',
-    value: 162
-  },
-  UST: {
-    name:  'Upper Secondary Threshold (under 21)',
-    value: 892
-  },
-  AUST: {
-    name:  'Apprentice Upper Secondary Threshold (apprentice under 25)',
-    value: 892
-  },*/
   UEL: {
     name: 'Upper Earnings Limit',
     description: 'Balance of earnings above UEL',

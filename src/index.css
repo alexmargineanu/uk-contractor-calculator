@@ -32,10 +32,11 @@ small {
 }
 
 input.dayRate {
-  width: 100px;
+  width: 80px;
   background: transparent;
   border: 1px solid #fff;
-  color: #fff;
+  color: #ccc;
   font-size: 1em;
   padding: 3px;
+  margin: 2px;
 }

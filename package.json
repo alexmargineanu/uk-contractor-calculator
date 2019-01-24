@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/alexmargineanu/uk-contractor-calculator/"
   },
-  "homepage": "https://alexmargineanu.github.io/uk-contractor-calculator/",
+  "homepage": "https://alexmargineanu.github.io/uk-contractor-calculator",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

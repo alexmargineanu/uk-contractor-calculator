@@ -25,17 +25,12 @@ h1, h2 {
   font-weight: normal;
 }
 
-small {
-  display: block;
-  font-size: 0.6em;
-  color: #ccc;
+.rateAndWeeks {
+  text-align: center;
 }
 
 input[type="number"] {
   width: 70px;
-}
-.rateAndWeeks {
-  text-align: center;
 }
 
 @media (min-width: 481px) and (max-width: 767px) {
@@ -48,5 +43,8 @@ input[type="number"] {
   .ui[class*="two column"].grid>.column:not(.row),
   .ui[class*="two column"].grid>.row>.column {
     width: 100%;
+  }
+  .ui.progress>.label {
+    font-size: 0.9em;
   }
 }

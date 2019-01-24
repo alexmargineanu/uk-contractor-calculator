@@ -39,14 +39,14 @@ class App extends Component {
           noWeeks={this.state.noWeeks}
         />
 
-        <NationalInsurance
-          weeklyRate={this.state.dayRate * 5}
-          onChange={this.handleNationalInsuranceChange}
-        />
-
         <IncomeTax
           yearlyRate={this.state.dayRate * 5 * this.state.noWeeks}
           onChange={this.handleIncomeTaxChange}
+        />
+        
+        <NationalInsurance
+          weeklyRate={this.state.dayRate * 5}
+          onChange={this.handleNationalInsuranceChange}
         />
 
         <NetPay

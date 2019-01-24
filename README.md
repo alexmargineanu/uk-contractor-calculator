@@ -4,7 +4,9 @@ National Insurance and Income Tax Calculator for UK contractors
 How much employers deduct from employees’ pay for the 2018 to 2019 tax year.
 
 £116 to £162 a week (£503 to £702 a month)          0%
+
 £162.01 to £892 a week (£702.01 to £3,863 a month)  12%
+
 Over £892 a week (£3,863 a month)                   2%
 
 ### Employer National Insurance rates

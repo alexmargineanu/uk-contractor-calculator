@@ -48,4 +48,7 @@ input[type="number"] {
     font-size: 0.9em;
     font-weight: 300;
   }
+  .ui.statistic+.ui.statistic {
+    margin-top: 25px;
+  }
 }

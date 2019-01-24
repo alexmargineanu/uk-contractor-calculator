@@ -8,8 +8,8 @@ const NetPay = ({ weeklyRate, nationalInsurance, incomeTax, noWeeks }) => {
   const net = gross - (nationalInsurance * noWeeks) - incomeTax;
 
   return (
-    <Segment inverted className='netPay'>
-      <Statistic size='small' color='teal'>
+    <Segment className='netPay'>
+      <Statistic size='small'>
         <Statistic.Value>{util.financial(gross)}</Statistic.Value>
         <Statistic.Label>GROSS Pay</Statistic.Label>
       </Statistic>
@@ -17,11 +17,11 @@ const NetPay = ({ weeklyRate, nationalInsurance, incomeTax, noWeeks }) => {
         <Statistic.Value>{util.financial(net)}</Statistic.Value>
         <Statistic.Label>NET Pay</Statistic.Label>
       </Statistic>
-      <Statistic size='small' color='pink'>
+      <Statistic size='small'>
         <Statistic.Value>{util.financial(incomeTax)}</Statistic.Value>
         <Statistic.Label>Income Tax</Statistic.Label>
       </Statistic>
-      <Statistic size='small' color='orange'>
+      <Statistic size='small'>
         <Statistic.Value>{util.financial(nationalInsurance * noWeeks)}</Statistic.Value>
         <Statistic.Label>National Insurance</Statistic.Label>
       </Statistic>

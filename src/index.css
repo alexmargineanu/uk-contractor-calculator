@@ -25,7 +25,7 @@ h1, h2 {
   font-weight: normal;
 }
 
-.rateAndWeeks {
+.rateAndWeeks, .netPay {
   text-align: center;
 }
 
@@ -46,5 +46,6 @@ input[type="number"] {
   }
   .ui.progress>.label {
     font-size: 0.9em;
+    font-weight: 300;
   }
 }

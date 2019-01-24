@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import * as util from './util.js';
 import NationalInsurance from './NationalInsurance';
 import IncomeTax from './IncomeTax';
 import ContractDetails from './ContractDetails';
+import NetPay from './NetPay';
 
 import './index.css';
 
@@ -49,8 +49,12 @@ class App extends Component {
           onChange={this.handleIncomeTaxChange}
         />
 
-        <h1>Gross pay: {util.financial(this.state.dayRate * 5)}/week</h1>
-        <h1>Net pay: {util.financial((this.state.dayRate * 5) - this.state.nationalInsurance - (this.state.incomeTax/52))}/week</h1>
+        <NetPay
+          weeklyRate={this.state.dayRate * 5}
+          noWeeks={this.state.noWeeks}
+          incomeTax={this.state.incomeTax}
+          nationalInsurance={this.state.nationalInsurance}
+        />
     </>
     );
   }

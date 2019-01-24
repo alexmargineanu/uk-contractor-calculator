@@ -31,12 +31,22 @@ small {
   color: #ccc;
 }
 
-input.dayRate {
-  width: 80px;
-  background: transparent;
-  border: 1px solid #fff;
-  color: #ccc;
-  font-size: 1em;
-  padding: 3px;
-  margin: 2px;
+input[type="number"] {
+  width: 70px;
+}
+.rateAndWeeks {
+  text-align: center;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .ui[class*="two column"].grid>.column:not(.row),
+  .ui[class*="two column"].grid>.row>.column {
+    width: 100%;
+  }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .ui[class*="two column"].grid>.column:not(.row),
+  .ui[class*="two column"].grid>.row>.column {
+    width: 100%;
+  }
 }

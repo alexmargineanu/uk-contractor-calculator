@@ -3,31 +3,18 @@ import { Grid, Progress, Header, Segment } from 'semantic-ui-react'
 import * as util from '../util.js';
 import Tresholds from './Tresholds';
 
-const NationalInsuranceGrid = ( { weeklyRate, niAmmounts, summedTresholds }) =>
+const NationalInsuranceGrid = ( { ...props }) =>
 <>
   <Grid divided columns={2}>
    <Grid.Column>
-      <NationalInsuranceTresholds type="employee" summedTresholds={summedTresholds} weeklyRate={weeklyRate} niAmmounts={niAmmounts} />
+      <NationalInsuranceTresholds type="employee" {...props} />
     </Grid.Column>
     <Grid.Column>
-      <NationalInsuranceTresholds type="employer" summedTresholds={summedTresholds} weeklyRate={weeklyRate} niAmmounts={niAmmounts} />
+      <NationalInsuranceTresholds type="employer" {...props} />
    </Grid.Column>
  </Grid>
- <NetPay
-   weeklyRate={weeklyRate}
-   summedTresholds={summedTresholds}
-   niAmmounts={niAmmounts}
- />
 </>
 
-const NetPay = ({ summedTresholds, weeklyRate }) =>
-<>
-  <Segment>
-    <Progress color='violet' percent={Math.floor((summedTresholds.employee + summedTresholds.employer) * (100 / weeklyRate))} progress>
-      {Math.floor((summedTresholds.employee + summedTresholds.employer) * (100 / weeklyRate))}% of your gross pay goes to National Insurance
-    </Progress>
-  </Segment>
-</>
 
 const NationalInsuranceTresholds = ( { weeklyRate, niAmmounts, summedTresholds, type }) =>
 <Segment>

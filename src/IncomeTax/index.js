@@ -64,14 +64,16 @@ class IncomeTax extends Component {
     const summedTresholds = _sumBy(ammounts, 'tax');
 
     return (
-      <>
-        <Header as='h2'>Income Tax: {util.financial(summedTresholds)}/year</Header>
-        <IncomeTaxGrid
-          yearlyRate={yearlyRate}
-          summedTresholds={summedTresholds}
-          ammounts={ammounts}
-        />
-      </>
+      summedTresholds > 0 && (
+        <>
+          <Header as='h2'>Income Tax: {util.financial(summedTresholds)}/year</Header>
+          <IncomeTaxGrid
+            yearlyRate={yearlyRate}
+            summedTresholds={summedTresholds}
+            ammounts={ammounts}
+          />
+        </>
+      )
     );
   }
 }

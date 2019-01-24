@@ -13,7 +13,7 @@ class ContractDetails extends Component {
 
   render() {
     return (
-      <>
+      <div className="rateAndWeeks">
         <Input
           type="number"
           min="1"
@@ -36,7 +36,7 @@ class ContractDetails extends Component {
           placeholder='Day rate'
           size='large'
         />
-      </>
+      </div>
     );
   }
 }

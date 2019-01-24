@@ -1,5 +1,8 @@
 National Insurance and Income Tax Calculator for UK contractors
 
+### National Insurance
+https://www.gov.uk/national-insurance-rates-letters
+
 ### Employee National Insurance rates
 How much employers deduct from employees’ pay for the 2018 to 2019 tax year.
 
@@ -12,7 +15,7 @@ How much employers pay towards employees’ National Insurance for the 2018 to 2
 
 £116 to £162 a week (£503 to £702 a month)          0%<br>
 £162.01 to £892 a week (£702.01 to £3,863 a month)  13.8%<br>
-Over £892 a week (£3,863 a month)                   13.8%<br>
+Over £892 a week (£3,863 a month)                   13.8%
 
 ### Income Tax rates and bands
 https://www.gov.uk/income-tax-rates
@@ -22,7 +25,7 @@ The tax rates you pay in each band if you have a standard Personal Allowance of 
 Personal Allowance    Up to £11,850	          0%<br>
 Basic rate	          £11,851 to £46,350	    20%<br>
 Higher rate	          £46,351 to £150,000	    40%<br>
-Additional rate	      over £150,000	          45%<br>
+Additional rate	      over £150,000	          45%
 
 You don’t get a Personal Allowance on taxable income over £123,700.
 

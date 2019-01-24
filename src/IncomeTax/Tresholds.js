@@ -11,7 +11,7 @@ const Tresholds = {
   },
   BR: {
     name:  'Basic Rate',
-    value: 11850,
+    value: 11851,
     rate: 20,
   },
   HR: {

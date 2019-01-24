@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/uk-contractor-calculator/static/css/main.8075d67c.chunk.css"
   },
   {
-    "revision": "db767409155b7cc5cbaf34dcfccc07b7",
+    "revision": "85b97857a9c0890b26945da22f96984f",
     "url": "/uk-contractor-calculator/index.html"
   }
 ];

@@ -1,6 +1,6 @@
 {
-  "short_name": "National Insurance Calculator",
-  "name": "UK National Insurance Calculator",
+  "short_name": "Contractor Calculator",
+  "name": "National Insurance and Income Tax calculator for UK contractors",
   "icons": [
     {
       "src": "favicon.ico",

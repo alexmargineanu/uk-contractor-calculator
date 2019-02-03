@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/uk-contractor-calculator/precache-manifest.61f9145d53ca6b754e102c230a9f2349.js"
+  "/uk-contractor-calculator/precache-manifest.89418958d78019376f24bba07603cc3e.js"
 );
 
 workbox.clientsClaim();
